@@ -14,6 +14,7 @@ export default (props) => {
     return (<Layout><h1>Posts page</h1>
         {
             props.data.allWordpressPost.edges.map((post) => {
+                // TODO: move the decoding to the API call, and in the component just consume the value that comes from the store
                 return (<p key={post.node.id}> post: { he.decode(post.node.title) } </p>)
             })
         }
