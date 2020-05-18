@@ -1,18 +1,20 @@
 import React from 'react';
 import Layout from "../components/layout";
 import { graphql } from "gatsby";
+import he from 'he';
 
 export default (props) => {
-    console.log('posts page data ', props.data);
-    function decodeHtml(html) {
-        var txt = document.createElement("textarea");
-        txt.innerHTML = html;
-        return txt.value;
-    }
+    // console.log('posts page data ', props.data);
+
+    // function decodeHtml(html) {
+    //     var txt = document.createElement("textarea");
+    //     txt.innerHTML = html;
+    //     return txt.value;
+    // }
     return (<Layout><h1>Posts page</h1>
         {
             props.data.allWordpressPost.edges.map((post) => {
-                return (<p key={post.node.id}> post: {decodeHtml(post.node.title)} </p>)
+                return (<p key={post.node.id}> post: { he.decode(post.node.title) } </p>)
             })
         }
     </Layout>)
