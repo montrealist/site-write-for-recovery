@@ -11,9 +11,13 @@ const Page = (props) => {
     return (
       <>
     <Layout>
-      <SEO title="Home" />
-      <h1>{page.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: page.content }} />
+      <SEO title={page.title} />
+      <section id="intro_content_sec" className="col-lg-10 col-md-11 col-sm-11 center-div intro-content-wrap sec-pad">
+          <div className="person-img margin-bottom-xs"></div>
+          <h1>{page.title}</h1>
+          <div dangerouslySetInnerHTML={{ __html: page.content }} />
+        </section>
+
     </Layout>
       </>
     )
