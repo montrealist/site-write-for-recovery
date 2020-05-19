@@ -31,6 +31,12 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
     {
+      resolve: 'gatsby-plugin-load-script',
+      options: {
+        src: '/js/init.js',
+      },
+    },
+    {
       resolve: "gatsby-source-wordpress",
       options: {
         /*
