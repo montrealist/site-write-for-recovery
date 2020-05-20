@@ -537,18 +537,21 @@ p{
 	}
 }
 
-header {
+.header-wrapper-animation {
+	overflow: auto;
 	position:absolute;
 	right: 0;
-    top: 0;
-    width: 100%;
+	top: 0;
+	width: 100%;
 	z-index:1;
 	height:70px;
-	@include transform(translateY(-70px) translateZ(0));
-	@include transition(transform 0.6s ease 0s);
-	&.header-animation {
-		@include transform(translateY(0) translateZ(0));
-	}
+}
+header {
+	// @include transform(translateY(-70px) translateZ(0));
+	// @include transition(transform 0.6s ease 0s);
+	// &.header-animation {
+	// 	@include transform(translateY(0) translateZ(0));
+	// }
 	.header-wrap {
 		padding-top:16px;
 		.pe-7s-download {
@@ -602,8 +605,8 @@ nav.navbar.navbar-default.vertical-nav {
 		@include transform (translateY(-50%));
 		background:none;
 		border:none;
-		opacity:0;
-		visibility:hidden;
+		// opacity:0;
+		// visibility:hidden;
 		@include transition(all 2s cubic-bezier(0.19, 1, 0.22, 1) 0s);
 		
 	li{
@@ -691,10 +694,10 @@ nav.navbar.navbar-default.vertical-nav {
 	}
 	
 }
-.vertical-nav-wrap.vertical-nav-animation nav.navbar.navbar-default.vertical-nav {
-	opacity:1;
-	visibility:visible;
-}
+// .vertical-nav-wrap.vertical-nav-animation nav.navbar.navbar-default.vertical-nav {
+// 	opacity:1;
+// 	visibility:visible;
+// }
 a.goto-social,a.goto-social:hover {
 	font-size:16px;
 	font-weight:600;
@@ -1402,16 +1405,16 @@ footer {
 	}
 	
 	header {
-		top: -70px;
-		margin-top: 70px;
+		// top: -70px;
+		// margin-top: 70px;
 		width: 100%;
 		position:fixed;
 		z-index:99;
 		background:$primery_font_color;
-		@include transform(translateY(-70px) translateZ(0));
+		// @include transform(translateY(-70px) translateZ(0));
 		backface-visibility: hidden;
 		-webkit-backface-visibility:hidden;
-		@include transition(margin 0.6s ease 0s, transform 0.6s ease 0s);
+		// @include transition(margin 0.6s ease 0s, transform 0.6s ease 0s);
 		&.fixed {
 			width:100%;
 		}
@@ -1489,9 +1492,9 @@ footer {
 			}
 		}	
 	}
-	.vertical-nav-wrap {
-		display:none;
-	}
+	// .vertical-nav-wrap {
+	// 	display:none;
+	// }
 }
 @media only screen and (max-width: 1024px) {
 	header .header-wrap .btn:hover {
@@ -1580,13 +1583,13 @@ footer {
 		height:50px;
 		top: -50px;
 		margin-top:50px;
-		@include transform(translateY(-50px) translateZ(0));
+		// @include transform(translateY(-50px) translateZ(0));
 		.header-wrap {
 			padding-top:0;
 		}
-		&.header-animation {
-			@include transform(translateY(0px) translateZ(0));
-		}
+		// &.header-animation {
+		// 	@include transform(translateY(0px) translateZ(0));
+		// }
 	}
 	.name span {
 		font-size:13px;

@@ -18,12 +18,12 @@ $(window).on('load', function () {
 	// setTimeout(function () {
 	// 	$("#main_content").addClass("content-block-animation");
 	// }, 1000);
-	setTimeout(function () {
-		$("#vertical_nav_wrap").addClass("vertical-nav-animation");
-	}, 2000);
-	setTimeout(function () {
-		$("header").addClass("header-animation");
-	}, 1900);
+	// setTimeout(function () {
+	// 	$("#vertical_nav_wrap").addClass("vertical-nav-animation");
+	// }, 2000);
+	// setTimeout(function () {
+	// 	$("header").addClass("header-animation");
+	// }, 1900);
 	// console.log('preload', $("#pre_load"));
 	// $("#pre_load").delay(500).fadeOut("slow");
 

@@ -41,6 +41,10 @@ const Layout = ({ children }) => {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
+  const headerVariants = {
+    slidUp: { top: -70 },
+    slidDown: { top: 0 },
+  };
   
   return (
     <>
@@ -88,6 +92,13 @@ const Layout = ({ children }) => {
           <div className="col-lg-8 col-xs-12 pad-zero">
 
             {/*Header*/}
+            <motion.div
+              initial="slidUp"
+              animate="slidDown"
+              variants={headerVariants}
+              transition={{ delay: .25 }}
+              className="header-wrapper-animation"
+            >
             <header>
               <div className="header-wrap col-lg-10 center-div">
                 <div className="float-left name">
@@ -110,6 +121,7 @@ const Layout = ({ children }) => {
               </div>
               <div className="clearfix"></div>
             </header>
+            </motion.div>
             {/*/Header*/}
 
             {/*Main Content*/}
