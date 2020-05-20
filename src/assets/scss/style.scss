@@ -125,17 +125,17 @@ ul {
 }
 
 a {
-    color: $secondery_color;
+    // color: $secondery_color;
     text-decoration: none;
 }
 
 a:hover {
-    color: $secondery_color;
+    // color: $secondery_color;
     text-decoration: none;
 }
 
 a:focus {
- 	color: $secondery_color;
+ 	// color: $secondery_color;
     text-decoration: none;
     outline: none;
 }
@@ -431,9 +431,9 @@ p{
 
 /********Body Sec CSS********/
 .fixed-bg {
-	background: rgba(0, 0, 0, 0) url("../img/mainbg.jpg") no-repeat;
-	animation: 60s ease 0s normal none infinite back_ken;
-	-webkit-animation: 60s ease 0s normal none infinite back_ken;
+	background: rgba(0, 0, 0, 0) url("../img/bg-default-akira-hojo-unsplash-cropped.jpg") no-repeat;
+	animation: 90s ease 0s normal none infinite back_ken;
+	-webkit-animation: 90s ease 0s normal none infinite back_ken;
 	image-rendering: optimizeQuality;
     height: 100%;
     width: 100%;
@@ -548,6 +548,7 @@ p{
 	height:70px;
 }
 header {
+	height:70px;
 	// @include transform(translateY(-70px) translateZ(0));
 	// @include transition(transform 0.6s ease 0s);
 	// &.header-animation {
