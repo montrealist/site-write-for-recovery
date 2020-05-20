@@ -34,8 +34,8 @@ const Layout = ({ children }) => {
       }
     }
   `)
-    console.log('data', data);
-    const nav = data.allWordpressMenusMenusItems.edges[0].node.items;
+  // console.log('data object', data);
+  const nav = data.allWordpressMenusMenusItems.edges[0].node.items;
   return (
     <>
       {/*Fixed Bg Image*/}
@@ -55,7 +55,7 @@ const Layout = ({ children }) => {
           <div id="vertical_nav_wrap" className="col-lg-4 col-xs-12 pad-zero vertical-nav-wrap">
 
             {/*Navigation*/}
-					<nav className="navbar navbar-default vertical-nav" role="navigation">
+            <nav className="navbar navbar-default vertical-nav" role="navigation">
               <div className="navbar-header">
                 <button type="button" className="btn btn-default navbar-toggle" data-toggle="collapse"
                   data-target="#navbar_collapse">
@@ -77,18 +77,18 @@ const Layout = ({ children }) => {
             </nav>
             {/*/Navigation*/}
 
-				</div>
+          </div>
 
           <div className="col-lg-8 col-xs-12 pad-zero">
 
             {/*Header*/}
-					<header>
+            <header>
               <div className="header-wrap col-lg-10 center-div">
                 <div className="float-left name">
                   <a data-scroll href="#body">
                     <span>
                       {data.wordpressSiteMetadata.name}
-									</span>
+                    </span>
                   </a>
                 </div>
 
@@ -106,12 +106,12 @@ const Layout = ({ children }) => {
             </header>
             {/*/Header*/}
 
-					{/*Main Content*/}
-					<div id="main_content" className="content-block margin-top-150 margin-top-sm-70 margin-top-xs-50">
+            {/*Main Content*/}
+            <div id="main_content" className="content-block margin-top-150 margin-top-sm-70 margin-top-xs-50">
 
               {/*Introduction Sec*/}
               {children}
-						{/* <section id="intro_content_sec" className="col-lg-10 col-md-11 col-sm-11 center-div intro-content-wrap sec-pad">
+              {/* <section id="intro_content_sec" className="col-lg-10 col-md-11 col-sm-11 center-div intro-content-wrap sec-pad">
                 <div className="person-img margin-bottom-xs"></div>
                 <h1>
                   Hiya!<span id="typed"></span>
@@ -132,10 +132,10 @@ const Layout = ({ children }) => {
               </section> */}
               {/*/Introduction Sec*/}
 
-						<hr className="separater-hr" />
+              <hr className="separater-hr" />
 
               {/*Footer*/}
-						<footer className="col-lg-10 col-md-11 col-sm-11 center-div contact-wrap  sec-pad">
+              <footer className="col-lg-10 col-md-11 col-sm-11 center-div contact-wrap  sec-pad">
                 <div className="row">
                   <div className="col-sm-6 available-wrap">
                     <span className="available-pointer"></span>
@@ -144,7 +144,7 @@ const Layout = ({ children }) => {
                   <div className="col-sm-6">
                     <div className="social-icons-wrap float-right">
                       {/*Social Icons*/}
-										<ul className="social-icons float-right">
+                      <ul className="social-icons float-right">
                         <li>
                           <a href="#" className="social-icon">
                             <span className="fa" data-hover="&#xf09a;">&#xf09a;</span>
@@ -167,7 +167,7 @@ const Layout = ({ children }) => {
                         </li>
                       </ul>
                       {/*/Social Icons*/}
-									</div>
+                    </div>
                     <div className="goto-top text-right float-right">
                       <a data-scroll href="#body">
                         <span data-hover="top">
@@ -183,10 +183,10 @@ const Layout = ({ children }) => {
               </footer>
               {/*/Footer*/}
 
-					</div>
+            </div>
             {/*/Main Content*/}
 
-				</div>
+          </div>
         </div>
       </div>
       {/* /Container */}
