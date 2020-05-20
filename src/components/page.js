@@ -11,12 +11,12 @@ const Page = (props) => {
     // console.log('page object', page);
     return (
       <Layout>
-          {page.acf.featured_image && (
+          {page.acf.hero_image && (
             <Helmet>
             <style type="text/css">
               {`
               .fixed-bg {
-                background-image: url(${page.acf.featured_image.localFile.url});
+                background-image: url(${page.acf.hero_image.localFile.url});
               }
             `}
             </style>
@@ -41,7 +41,7 @@ export const pageQuery = graphql`
       title
       content
       acf {
-        featured_image {
+        hero_image {
           title
           localFile {
             url
