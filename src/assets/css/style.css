@@ -340,7 +340,8 @@ p {
     transform: scale(1); } }
 /********Body Sec CSS********/
 .fixed-bg {
-  background: transparent url("../img/mainbg.jpg") no-repeat;
+  /** TODO: get a default BG image that would work on any page */
+  background: transparent url("/img/mainbg.jpg") no-repeat;
   animation: 60s ease 0s normal none infinite back_ken;
   -webkit-animation: 60s ease 0s normal none infinite back_ken;
   image-rendering: optimizeQuality;
