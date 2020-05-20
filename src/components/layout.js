@@ -7,13 +7,13 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 
 // import Header from "./header"
 import "../assets/css/style.css"
 
 const Layout = ({ children }) => {
-
+  console.log('layout ran');
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       wordpressSiteMetadata {
@@ -34,8 +34,9 @@ const Layout = ({ children }) => {
       }
     }
   `)
-  // console.log('data object', data);
+
   const nav = data.allWordpressMenusMenusItems.edges[0].node.items;
+
   return (
     <>
       {/*Fixed Bg Image*/}
@@ -69,7 +70,7 @@ const Layout = ({ children }) => {
                 <ul className="nav navbar-nav">
                   {nav.map((node, index) => {
                     return (
-                      <li key={index}><a data-scroll href={node.slug}></a><span>{node.title}</span></li>
+                      <li key={index}><Link data-scroll to={"/" + node.slug}></Link><span>{node.title}</span></li>
                     )
                   })}
                 </ul>
@@ -85,21 +86,21 @@ const Layout = ({ children }) => {
             <header>
               <div className="header-wrap col-lg-10 center-div">
                 <div className="float-left name">
-                  <a data-scroll href="#body">
-                    <span>
-                      {data.wordpressSiteMetadata.name}
-                    </span>
-                  </a>
+                  {/* TODO: change to correct url */}
+                  <Link data-scroll to={"/" + data.wordpressSiteMetadata.name}><span>
+                    {data.wordpressSiteMetadata.name}
+                  </span></Link>
                 </div>
 
                 <div className="float-right social-download-wrap">
-                  <a href="#" className="btn btn-default float-left">
+                  {/* TODO: button to 'buy my book' */}
+                  {/* <a href="#" className="btn btn-default float-left">
                     <span className="mask"></span>
                     <span className="btn-label">
                       <b>download resume</b>
                       <span className="icon pe-7s-download"></span>
                     </span>
-                  </a>
+                  </a> */}
                 </div>
               </div>
               <div className="clearfix"></div>
@@ -144,7 +145,7 @@ const Layout = ({ children }) => {
                   <div className="col-sm-6">
                     <div className="social-icons-wrap float-right">
                       {/*Social Icons*/}
-                      <ul className="social-icons float-right">
+                      {/* <ul className="social-icons float-right">
                         <li>
                           <a href="#" className="social-icon">
                             <span className="fa" data-hover="&#xf09a;">&#xf09a;</span>
@@ -165,7 +166,7 @@ const Layout = ({ children }) => {
                             <span className="fa" data-hover="&#xf16d;">&#xf16d;</span>
                           </a>
                         </li>
-                      </ul>
+                      </ul> */}
                       {/*/Social Icons*/}
                     </div>
                     <div className="goto-top text-right float-right">
