@@ -20,9 +20,22 @@ const Layout = ({ children }) => {
         name
         description
       }
+      allWordpressMenusMenusItems {
+        edges {
+          node {
+            slug
+            name
+            items {
+              title
+              slug
+            }
+          }
+        }
+      }
     }
   `)
     console.log('data', data);
+    const nav = data.allWordpressMenusMenusItems.edges[0].node.items;
   return (
     <>
       {/*Fixed Bg Image*/}
@@ -54,15 +67,11 @@ const Layout = ({ children }) => {
               </div>
               <div className="collapse navbar-collapse" id="navbar_collapse">
                 <ul className="nav navbar-nav">
-                  <li><a data-scroll href="#body"></a><span>about</span></li>
-                  <li><a data-scroll href="#services_sec"></a><span>services</span></li>
-                  <li><a data-scroll href="#skill_sec"></a><span>skills</span></li>
-                  <li><a data-scroll href="#work_sec"></a><span>work</span></li>
-                  <li><a data-scroll href="#edu_sec"></a><span>education</span></li>
-                  <li><a data-scroll href="#exp_sec"></a><span>experience</span></li>
-                  <li><a data-scroll href="#client_sec"></a><span>clients</span></li>
-                  <li><a data-scroll href="#achivement_sec"></a><span>achivements</span></li>
-                  <li><a data-scroll href="#contact_sec"></a><span>contact</span></li>
+                  {nav.map((node, index) => {
+                    return (
+                      <li key={index}><a data-scroll href={node.slug}></a><span>{node.title}</span></li>
+                    )
+                  })}
                 </ul>
               </div>
             </nav>
