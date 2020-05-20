@@ -8,12 +8,12 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql, Link } from "gatsby"
+import { motion } from "framer-motion"
 
 // import Header from "./header"
 import "../assets/scss/style.scss"
 
 const Layout = ({ children }) => {
-  console.log('layout ran');
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       wordpressSiteMetadata {
@@ -37,6 +37,11 @@ const Layout = ({ children }) => {
 
   const nav = data.allWordpressMenusMenusItems.edges[0].node.items;
 
+  const opacityVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
+  
   return (
     <>
       {/*Fixed Bg Image*/}
@@ -108,6 +113,11 @@ const Layout = ({ children }) => {
             {/*/Header*/}
 
             {/*Main Content*/}
+            <motion.div 
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: .5 }}
+              variants={opacityVariants} >
             <div id="main_content" className="content-block margin-top-150 margin-top-sm-70 margin-top-xs-50">
 
               {/*Introduction Sec*/}
@@ -185,6 +195,7 @@ const Layout = ({ children }) => {
               {/*/Footer*/}
 
             </div>
+            </motion.div>
             {/*/Main Content*/}
 
           </div>

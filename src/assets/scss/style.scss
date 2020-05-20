@@ -460,10 +460,10 @@ p{
 	background:$background_color;
 	border-top-left-radius: 10px;
 	@include transition(all .9s cubic-bezier(0.19, 1, 0.22, 1) 0s);
-	@include transform(translateX(100%));
-	&.content-block-animation {
-		@include transform(translateX(0%));
-	}
+	// @include transform(translateX(100%));
+	// &.content-block-animation {
+	// 	@include transform(translateX(0%));
+	// }
 	.person-img {
 		height:150px;
 		width:150px;

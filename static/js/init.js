@@ -15,9 +15,9 @@ $(document).ready(function () {
 /*****Load function start*****/
 $(window).on('load', function () {
 	/*Page load animaion start*/
-	setTimeout(function () {
-		$("#main_content").addClass("content-block-animation");
-	}, 1000);
+	// setTimeout(function () {
+	// 	$("#main_content").addClass("content-block-animation");
+	// }, 1000);
 	setTimeout(function () {
 		$("#vertical_nav_wrap").addClass("vertical-nav-animation");
 	}, 2000);
