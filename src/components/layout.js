@@ -171,13 +171,13 @@ const Layout = ({ children }) => {
                     </div>
                     <div className="goto-top text-right float-right">
                       <a data-scroll href="#body">
-                        <span data-hover="top">
-                          top
+                        <span data-hover="back to top">
+                          back to top
 											</span>
                       </a>
                     </div>
                     <div className="copywrite-wrap text-right float-right">
-                      <p className="copywrite">Fabricated by <b>Hencework &copy; 2017.</b> Updated <b>June, 2017.</b></p>
+                      <p className="copywrite">Fabricated by Max <b>&copy; 2020.</b></p>
                     </div>
                   </div>
                 </div>
