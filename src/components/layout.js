@@ -9,6 +9,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import { motion } from "framer-motion"
+import he from 'he';
 
 // import Header from "./header"
 import "../assets/scss/style.scss"
@@ -79,7 +80,7 @@ const Layout = ({ children }) => {
                 <ul className="nav navbar-nav">
                   {nav.map((node, index) => {
                     return (
-                      <li key={index}><Link data-scroll to={"/" + node.slug}></Link><span>{node.title}</span></li>
+                      <li key={index}><Link data-scroll to={"/" + node.slug}></Link><span>{he.decode(node.title)}</span></li>
                     )
                   })}
                 </ul>
@@ -102,21 +103,22 @@ const Layout = ({ children }) => {
             <header>
               <div className="header-wrap col-lg-10 center-div">
                 <div className="float-left name">
-                  {/* TODO: change to correct url */}
-                  <Link data-scroll to={"/" + data.wordpressSiteMetadata.name}><span>
-                    {data.wordpressSiteMetadata.name}
-                  </span></Link>
+                  <Link data-scroll to={"/home"}>
+                    <span>
+                      {data.wordpressSiteMetadata.name}
+                    </span>
+                  </Link>
                 </div>
 
                 <div className="float-right social-download-wrap">
                   {/* TODO: button to 'buy my book' */}
-                  {/* <a href="#" className="btn btn-default float-left">
+                  <Link className="btn btn-default float-left" to={"/book"}>
                     <span className="mask"></span>
                     <span className="btn-label">
-                      <b>download resume</b>
+                      <b>get the book</b>
                       <span className="icon pe-7s-download"></span>
                     </span>
-                  </a> */}
+                  </Link>
                 </div>
               </div>
               <div className="clearfix"></div>
@@ -162,7 +164,7 @@ const Layout = ({ children }) => {
                 <div className="row">
                   <div className="col-sm-6 available-wrap">
                     <span className="available-pointer"></span>
-                    <span className="available-tag">Available for Freelance Projects.</span>
+                    <span className="available-tag"><a href="https://www.specificfeeds.com/writeforrecovery">Sign up for Week Writing Prompts.</a></span>
                   </div>
                   <div className="col-sm-6">
                     <div className="social-icons-wrap float-right">
