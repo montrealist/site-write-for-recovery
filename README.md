@@ -1,6 +1,12 @@
-# Write for Recovery revamp
+# Write for Recovery site revamp
 
-Simple site using Gatsby in front and WP-API for content in the back.
+Simple site using Gatsby in front and WordPress for all the content in the back (pulling site metadata, menus, and page content dynamically).
+
+## Deployment
+
+Development version deployed here:
+
+https://site-write-for-recovery.now.sh/
 
 ## Development
 
