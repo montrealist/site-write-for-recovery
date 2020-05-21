@@ -9,10 +9,10 @@ const path = require(`path`)
 const { slash } = require(`gatsby-core-utils`)
 
 exports.createPages = async ({ graphql, actions }) => {
-    const { createPage } = actions
+  const { createPage, createRedirect } = actions
 
-    // query content for WordPress posts
-    const result = await graphql(`
+  // query content for WordPress posts
+  const result = await graphql(`
     query {
       allWordpressPage {
         edges {
@@ -23,20 +23,27 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-  `)
+  `);
 
-    const postTemplate = path.resolve(`./src/components/page.js`)
-    result.data.allWordpressPage.edges.forEach(edge => {
-        createPage({
-            // will be the url for the page
-            path: edge.node.slug,
-            // specify the component template of your choice
-            component: slash(postTemplate),
-            // In the ^template's GraphQL query, 'id' will be available
-            // as a GraphQL variable to query for this posts's data.
-            context: {
-                id: edge.node.id,
-            },
-        })
+  const postTemplate = path.resolve(`./src/components/page.js`)
+  result.data.allWordpressPage.edges.forEach(edge => {
+    createPage({
+      // will be the url for the page
+      path: edge.node.slug,
+      // specify the component template of your choice
+      component: slash(postTemplate),
+      // In the ^template's GraphQL query, 'id' will be available
+      // as a GraphQL variable to query for this posts's data.
+      context: {
+        id: edge.node.id,
+      },
     })
+  });
+
+  createRedirect({
+    fromPath: `/`,
+    toPath: `/home`,
+    redirectInBrowser: true,
+    isPermanent: true,
+  });
 }
