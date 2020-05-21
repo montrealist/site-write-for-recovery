@@ -40,6 +40,7 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   });
 
+  // forward / to /home:
   createRedirect({
     fromPath: `/`,
     toPath: `/home`,
