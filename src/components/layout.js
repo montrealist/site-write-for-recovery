@@ -9,7 +9,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useStaticQuery, graphql, Link } from "gatsby";
 import { motion } from "framer-motion";
-import he from 'he';
 
 import Nav from "./nav";
 import "../assets/scss/style.scss";
