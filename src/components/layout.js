@@ -5,14 +5,14 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql, Link } from "gatsby"
-import { motion } from "framer-motion"
+import React from "react";
+import PropTypes from "prop-types";
+import { useStaticQuery, graphql, Link } from "gatsby";
+import { motion } from "framer-motion";
 import he from 'he';
 
-// import Header from "./header"
-import "../assets/scss/style.scss"
+import Nav from "./nav";
+import "../assets/scss/style.scss";
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -36,7 +36,7 @@ const Layout = ({ children }) => {
     }
   `)
 
-  const nav = data.allWordpressMenusMenusItems.edges[0].node.items;
+  const navItems = data.allWordpressMenusMenusItems.edges[0].node.items;
 
   const opacityVariants = {
     hidden: { opacity: 0 },
@@ -66,7 +66,9 @@ const Layout = ({ children }) => {
           <div id="vertical_nav_wrap" className="col-lg-4 col-xs-12 pad-zero vertical-nav-wrap">
 
             {/*Navigation*/}
-            <nav className="navbar navbar-default vertical-nav" role="navigation">
+            <Nav items={navItems} />
+
+            {/* <nav className="navbar navbar-default vertical-nav" role="navigation">
               <div className="navbar-header">
                 <button type="button" className="btn btn-default navbar-toggle" data-toggle="collapse"
                   data-target="#navbar_collapse">
@@ -78,14 +80,14 @@ const Layout = ({ children }) => {
               </div>
               <div className="collapse navbar-collapse" id="navbar_collapse">
                 <ul className="nav navbar-nav">
-                  {nav.map((node, index) => {
+                  {navItems.map((node, index) => {
                     return (
                       <li key={index}><Link data-scroll to={"/" + node.slug}></Link><span>{he.decode(node.title)}</span></li>
                     )
                   })}
                 </ul>
               </div>
-            </nav>
+            </nav> */}
             {/*/Navigation*/}
 
           </div>
