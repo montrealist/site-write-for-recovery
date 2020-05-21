@@ -104,10 +104,10 @@ const Layout = ({ children }) => {
             >
             <header>
               <div className="header-wrap col-lg-10 center-div">
-                <div className="float-left name">
+                <div className="float-left description">
                   <Link data-scroll to={"/home"}>
                     <span>
-                      {data.wordpressSiteMetadata.name}
+                      {data.wordpressSiteMetadata.description}
                     </span>
                   </Link>
                 </div>
