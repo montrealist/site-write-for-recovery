@@ -19,6 +19,7 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             id
             slug
+            path
           }
         }
       }
@@ -27,9 +28,10 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const postTemplate = path.resolve(`./src/components/page.js`)
   result.data.allWordpressPage.edges.forEach(edge => {
+    console.log('page slug', edge);
     createPage({
       // will be the url for the page
-      path: edge.node.slug,
+      path: edge.node.path,
       // specify the component template of your choice
       component: slash(postTemplate),
       // In the ^template's GraphQL query, 'id' will be available
@@ -40,10 +42,11 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   });
 
-  // forward / to /home:
+
+  // FIXME: remove 'write-for-recovery' later!
   createRedirect({
     fromPath: `/`,
-    toPath: `/home`,
+    toPath: `/home/write-for-recovery`,
     redirectInBrowser: true,
     isPermanent: true,
   });

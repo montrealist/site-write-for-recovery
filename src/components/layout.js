@@ -20,22 +20,9 @@ const Layout = ({ children }) => {
         name
         description
       }
-      allWordpressMenusMenusItems {
-        edges {
-          node {
-            slug
-            name
-            items {
-              title
-              slug
-            }
-          }
-        }
-      }
+
     }
   `)
-
-  const navItems = data.allWordpressMenusMenusItems.edges[0].node.items;
 
   const opacityVariants = {
     hidden: { opacity: 0 },
@@ -65,7 +52,7 @@ const Layout = ({ children }) => {
           <div id="vertical_nav_wrap" className="col-lg-4 col-xs-12 pad-zero vertical-nav-wrap">
 
             {/*Navigation*/}
-            <Nav items={navItems} />
+            <Nav />
 
             {/* <nav className="navbar navbar-default vertical-nav" role="navigation">
               <div className="navbar-header">
