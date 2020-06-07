@@ -6,6 +6,9 @@
 const path = require(`path`)
 const { slash } = require(`gatsby-core-utils`)
 
+const pageTemplateName = 'page.js';
+const pageTemplateRoot = './src/components';
+
 exports.createPages = async ({ graphql, actions }) => {
     const { createPage, createRedirect } = actions
 
@@ -13,6 +16,32 @@ exports.createPages = async ({ graphql, actions }) => {
     // TODO: to get rid of the above, look into using `gatsby-source-graphql` (WPGraphQL) instead of `gatsby-source-wordpress`:
     // https://github.com/crock/gatsby-recipe-headless-wordpress 
 
+    const homepage = await graphql(`
+        query {
+            wordpressPage( slug: { eq: "home" } ) {
+                id
+                path
+            }
+        }
+    `).then(result => result.data.wordpressPage);
+
+    if (homepage.errors) throw new Error(homepage.errors);
+
+    const rootPathString = [pageTemplateRoot, pageTemplateName].join('/');
+    const rootTemplatePath = path.resolve(rootPathString);
+    // create a page for "home":
+    createPage({
+        // will be the url for the page
+        path: homepage.path,
+        // specify the component template of your choice
+        component: slash(rootTemplatePath),
+        // In the ^template's GraphQL query, 'id' will be available
+        // as a GraphQL variable to query for this posts's data.
+        context: {
+            id: homepage.id,
+        },
+    });
+    
     const childrenOfHome = await graphql(`
     query {
         allWordpressPage(
@@ -24,8 +53,8 @@ exports.createPages = async ({ graphql, actions }) => {
         ) {
             edges {
                 node {
+                    id
                     path
-                    title
                 }
             }
         }
@@ -34,13 +63,25 @@ exports.createPages = async ({ graphql, actions }) => {
 
     if (childrenOfHome.errors) throw new Error(childrenOfHome.errors);
 
-    // console.log('childrenOfHome: ', childrenOfHome.allWordpressPage.edges);
-
-    // FIXME: create the page for the actual parent, e.g. /home/write-for-recovery/ - right now only pages for children are created
-
     await Promise.all(childrenOfHome.allWordpressPage.edges.map(async (edge) => {
+        
+        const pathString = [pageTemplateRoot,rootPageSlug, pageTemplateName].join('/');
+        const templatePath = path.resolve(pathString);
+        // create a page for the child of "home":
+        createPage({
+            // will be the url for the page
+            path: edge.node.path,
+            // specify the component template of your choice
+            component: slash(templatePath),
+            // In the ^template's GraphQL query, 'id' will be available
+            // as a GraphQL variable to query for this posts's data.
+            context: {
+                id: edge.node.id,
+            },
+        });
+
         const pagePath = edge.node.path;
-        console.log('edge: ', pagePath);
+
         const pageObjects = await graphql(`
             query {
                 allWordpressPage(
@@ -53,7 +94,6 @@ exports.createPages = async ({ graphql, actions }) => {
                     edges {
                         node {
                             id
-                            slug
                             path
                         }
                     }
@@ -62,14 +102,10 @@ exports.createPages = async ({ graphql, actions }) => {
         `).then(result => result.data.allWordpressPage.edges);
         if (pageObjects.errors) throw new Error(pageObjects.errors);
 
-        // console.log('result for subquery: ', pageObjects);
-        // console.log('path', `./src/components${pagePath}page.js`);
         const postTemplatePath = path.resolve(`./src/components${pagePath}page.js`);
 
-        console.log('postTemplatePath', postTemplatePath);
-
         pageObjects.forEach(edge => {
-            console.log('edge.node.path', edge.node.path);
+            // console.log('edge.node.path', edge.node.path);
             createPage({
                 // will be the url for the page
                 path: edge.node.path,
@@ -84,41 +120,10 @@ exports.createPages = async ({ graphql, actions }) => {
         });
     }));
 
-    // const result = await graphql(`
-    //   query {
-    //     allWordpressPage {
-    //       edges {
-    //         node {
-    //           id
-    //           slug
-    //           path
-    //         }
-    //       }
-    //     }
-    //   }
-    // `);
-
-    // const postTemplate = path.resolve(`./src/components/page.js`)
-    // result.data.allWordpressPage.edges.forEach(edge => {
-    //   // console.log('page slug', edge);
-    //   createPage({
-    //     // will be the url for the page
-    //     path: edge.node.path,
-    //     // specify the component template of your choice
-    //     component: slash(postTemplate),
-    //     // In the ^template's GraphQL query, 'id' will be available
-    //     // as a GraphQL variable to query for this posts's data.
-    //     context: {
-    //       id: edge.node.id,
-    //     },
-    //   })
+    // createRedirect({
+    //     fromPath: `/`,
+    //     toPath: `/home/write-for-recovery`,
+    //     redirectInBrowser: true,
+    //     isPermanent: true,
     // });
-
-    // FIXME: remove 'write-for-recovery' later!
-    createRedirect({
-        fromPath: `/`,
-        toPath: `/home/write-for-recovery`,
-        redirectInBrowser: true,
-        isPermanent: true,
-    });
 }
