@@ -41,7 +41,7 @@ exports.createPages = async ({ graphql, actions }) => {
             id: homepage.id,
         },
     });
-    
+
     const childrenOfHome = await graphql(`
     query {
         allWordpressPage(
@@ -55,6 +55,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 node {
                     id
                     path
+                    slug
                 }
             }
         }
@@ -64,8 +65,8 @@ exports.createPages = async ({ graphql, actions }) => {
     if (childrenOfHome.errors) throw new Error(childrenOfHome.errors);
 
     await Promise.all(childrenOfHome.allWordpressPage.edges.map(async (edge) => {
-        
-        const pathString = [pageTemplateRoot,rootPageSlug, pageTemplateName].join('/');
+
+        const pathString = [pageTemplateRoot, rootPageSlug, edge.node.slug, pageTemplateName].join('/');
         const templatePath = path.resolve(pathString);
         // create a page for the child of "home":
         createPage({
