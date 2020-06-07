@@ -44,9 +44,7 @@ module.exports = {
         * The base URL of the Wordpress site without the trailingslash and the protocol. This is required.
         * Example : 'gatsbyjsexamplewordpress.wordpress.com' or 'www.example-site.com'
         */
-        // http://writeforrecovery.liro.ca/wp-admin/plugins.php?plugin_status=all&paged=1&s
         baseUrl: "writeforrecovery.liro.ca", // or your custom WordPress url
-        // baseUrl: "wcpboston.eelab.space", // or your custom WordPress url
         // The protocol. This can be http or https.
         protocol: "http",
         // Indicates whether the site is hosted on wordpress.com.
@@ -56,12 +54,12 @@ module.exports = {
         hostingWPCOM: false,
         // If useACF is true, then the source plugin will try to import the Wordpress ACF Plugin contents.
         // This feature is untested for sites hosted on Wordpress.com.
-        // Defaults to true.
         auth: null,
         useACF: true, // Allows to pull ACF fields
         // Set verboseOutput to true to display a verbose output on `npm run develop` or `npm run build`
         // It can help you debug specific API Endpoints problems.
-        verboseOutput: false,
+        verboseOutput: true,
+        // FIXME: set to false
         // Exclude specific routes using glob parameters
         // See: https://github.com/isaacs/minimatch
         // Example:  `["/*/*/comments", "/yoast/**"]` will exclude routes ending in `comments` and
@@ -71,6 +69,7 @@ module.exports = {
         normalizer: function ({ entities }) {
           return entities
         },
+        // get rid of 401 Unauthorized errors that some endpoints produce:
         includedRoutes: [
           "**/posts",
           "**/pages",
