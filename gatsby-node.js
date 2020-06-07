@@ -3,20 +3,20 @@
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
-
-// You can delete this file if you're not using it
 const path = require(`path`)
 const { slash } = require(`gatsby-core-utils`)
 
 exports.createPages = async ({ graphql, actions }) => {
     const { createPage, createRedirect } = actions
 
+    const rootPageSlug = 'home'; // have to hard-code this!
+
     const childrenOfHome = await graphql(`
     query {
         allWordpressPage(
             filter: { 
                 parent_element: { 
-                    slug: { eq: "home" } 
+                    slug: { eq: "${rootPageSlug}" } 
                 } 
             }
         ) {
@@ -39,7 +39,7 @@ exports.createPages = async ({ graphql, actions }) => {
     await Promise.all(childrenOfHome.allWordpressPage.edges.map(async (edge) => {
         const pagePath = edge.node.path;
         console.log('edge: ', pagePath);
-        const res = await graphql(`
+        const pageObjects = await graphql(`
             query {
                 allWordpressPage(
                     filter: {
@@ -57,24 +57,22 @@ exports.createPages = async ({ graphql, actions }) => {
                     }
                 }
             }
-        `);
+        `).then(result => result.data.allWordpressPage.edges);
+        if (pageObjects.errors) throw new Error(pageObjects.errors);
 
-        // TODO: generate pages with a different template:
+        // console.log('result for subquery: ', pageObjects);
+        // console.log('path', `./src/components${pagePath}page.js`);
+        const postTemplatePath = path.resolve(`./src/components${pagePath}page.js`);
 
-        console.log('result for subquery: ', res.data.allWordpressPage.edges);
+        console.log('postTemplatePath', postTemplatePath);
 
-        console.log('path', `./src/components${pagePath}page.js`);
-        const postTemplate = path.resolve(`./src/components${pagePath}page.js`);
-
-        console.log('postTemplate', postTemplate);
-
-        res.data.allWordpressPage.edges.forEach(edge => {
+        pageObjects.forEach(edge => {
             console.log('edge.node.path', edge.node.path);
             createPage({
                 // will be the url for the page
                 path: edge.node.path,
                 // specify the component template of your choice
-                component: slash(postTemplate),
+                component: slash(postTemplatePath),
                 // In the ^template's GraphQL query, 'id' will be available
                 // as a GraphQL variable to query for this posts's data.
                 context: {
