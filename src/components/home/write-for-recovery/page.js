@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 import he from 'he';
 
-import Layout from "../../layout"
+import Layout from "./layout"
 import SEO from "../../seo"
 
 const Page = (props) => {
