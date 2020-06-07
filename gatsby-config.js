@@ -71,6 +71,15 @@ module.exports = {
         normalizer: function ({ entities }) {
           return entities
         },
+        includedRoutes: [
+          "**/posts",
+          "**/pages",
+          "**/media",
+          "**/categories",
+          "**/tags",
+          "**/taxonomies",
+          "**/menus",
+        ],
       },
     },
 
