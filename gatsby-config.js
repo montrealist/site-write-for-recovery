@@ -37,6 +37,10 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    // 
+    // TODO: look into using `gatsby-source-graphql` (WPGraphQL) instead of `gatsby-source-wordpress`:
+    // https://github.com/crock/gatsby-recipe-headless-wordpress 
+    // 
     {
       resolve: "gatsby-source-wordpress",
       options: {

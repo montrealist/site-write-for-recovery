@@ -10,6 +10,8 @@ exports.createPages = async ({ graphql, actions }) => {
     const { createPage, createRedirect } = actions
 
     const rootPageSlug = 'home'; // have to hard-code this!
+    // TODO: to get rid of the above, look into using `gatsby-source-graphql` (WPGraphQL) instead of `gatsby-source-wordpress`:
+    // https://github.com/crock/gatsby-recipe-headless-wordpress 
 
     const childrenOfHome = await graphql(`
     query {
