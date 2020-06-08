@@ -71,6 +71,16 @@ module.exports = {
         normalizer: function ({ entities }) {
           return entities
         },
+        // get rid of 401 Unauthorized errors that some endpoints produce:
+        includedRoutes: [
+          "**/posts",
+          "**/pages",
+          "**/media",
+          "**/categories",
+          "**/tags",
+          "**/taxonomies",
+          "**/menus",
+        ],
       },
     },
 
