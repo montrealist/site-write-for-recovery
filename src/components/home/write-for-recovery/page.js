@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet"
 import he from 'he';
 
 import Layout from "./layout"
-import SEO from "./seo"
+import SEO from "../../seo"
 
 const Page = (props) => {
     const page = props.data.wordpressPage;
@@ -24,7 +24,7 @@ const Page = (props) => {
 
         <SEO title={page.title} />
         <section id="intro_content_sec" className="col-lg-10 col-md-11 col-sm-11 center-div intro-content-wrap sec-pad">
-            <h1>Home template - {he.decode(page.title)}</h1>
+            <h1>Template 2 - {he.decode(page.title)}</h1>
             <div dangerouslySetInnerHTML={{ __html: page.content }} />
           </section>
       </Layout>
