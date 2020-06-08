@@ -8,25 +8,31 @@
 const path = require(`path`)
 const { slash } = require(`gatsby-core-utils`)
 
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage, createRedirect } = actions
 
-  // query content for WordPress posts
-  const result = await graphql(`
-    query {
-      allWordpressPage {
-        edges {
-          node {
-            id
-            slug
+  const rootPageSlug = '/write-for-recovery/'; // FIXME: have to hard-code this?
+
+  const pages = await graphql(`
+      query {
+          allWordpressPage(filter: {path: {glob: "${rootPageSlug}**"}}) {
+              edges {
+                  node {
+                      id
+                      path
+                      slug
+                      title
+                  }
+              }
           }
-        }
       }
-    }
-  `);
+  `).then(result => result.data.allWordpressPage);
+
+  if (pages.errors) throw new Error(pages.errors);
 
   const postTemplate = path.resolve(`./src/components/page.js`)
-  result.data.allWordpressPage.edges.forEach(edge => {
+  pages.edges.forEach(edge => {
     createPage({
       // will be the url for the page
       path: edge.node.slug,
@@ -42,9 +48,9 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // forward / to /home:
   createRedirect({
-    fromPath: `/`,
-    toPath: `/home`,
-    redirectInBrowser: true,
-    isPermanent: true,
+      fromPath: `/`,
+      toPath: `/write-for-recovery`,
+      redirectInBrowser: true,
+      isPermanent: true,
   });
 }
