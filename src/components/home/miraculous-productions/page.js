@@ -3,9 +3,9 @@ import { graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 import he from 'he';
 
-import Layout from "../../layout"
+import Layout from "./layout"
 import SEO from "../../seo"
-
+// console.log('styles', styles);
 const Page = (props) => {
     const page = props.data.wordpressPage;
     return (
@@ -23,10 +23,22 @@ const Page = (props) => {
         }
 
         <SEO title={page.title} />
-        <section id="intro_content_sec" className="col-lg-10 col-md-11 col-sm-11 center-div intro-content-wrap sec-pad">
-            <h1>Template 1 - {he.decode(page.title)}</h1>
-            <div dangerouslySetInnerHTML={{ __html: page.content }} />
-          </section>
+        <section id="intro" className="tm-p-1-section-1">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-md-6">
+                <div className="tm-section-text-container">
+                  <h1>Template 1 - {he.decode(page.title)}</h1>
+                  <i className="tm-text-white">
+                    <p className="mb-0">
+                      <span dangerouslySetInnerHTML={{ __html: page.content }} />
+                    </p>
+                  </i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </Layout>
     )
 }

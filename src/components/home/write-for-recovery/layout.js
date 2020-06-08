@@ -11,7 +11,7 @@ import { useStaticQuery, graphql, Link } from "gatsby";
 import { motion } from "framer-motion";
 
 import Nav from "./nav";
-import "../../../assets/scss/style.scss";
+// import "../../../assets/scss/style.recovery.scss";
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`

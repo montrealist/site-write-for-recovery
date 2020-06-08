@@ -11,7 +11,6 @@ import PropTypes from "prop-types";
 // import { motion } from "framer-motion";
 
 // import Nav from "./nav";
-// import "../assets/scss/style.scss";
 
 const Layout = ({ children }) => {
   // const data = useStaticQuery(graphql`
